@@ -96,6 +96,7 @@ $border-radius-large: 5px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin: auto;
 }
 
 //ANIMACIJA
@@ -159,7 +160,7 @@ $border-radius-large: 5px;
   &__logo-box {
     position: absolute;
     text-align: center;
-    top: 7%;
+    top: 22%;
     left: 33%;
   }
 
@@ -448,7 +449,7 @@ iframe {
 
 .container-contact2 {
   width: 100%;
-  min-height: 100vh;
+  height: 70rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -457,7 +458,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 15rem 0 20rem 0;
+  padding: 1rem 0 1rem 0;
   background-image: linear-gradient(
     to right bottom,
     rgba($color-primary, 0.9),
@@ -734,10 +735,15 @@ textarea.input2 + .focus-input2::after {
 .section-galerija {
   background-color: #f7f7f7;
   width: 100%;
-  padding-top: 15rem;
+  padding-top: 8rem;
+  margin: auto;
+
+  .korteles {
+    display: flex;
+    justify-content: center;
+  }
 
   .example {
-    display: inline-flex;
     cursor: pointer;
     height: 30rem;
     position: relative;
@@ -753,9 +759,9 @@ textarea.input2 + .focus-input2::after {
   .photo {
     width: 100%;
     height: 40rem;
-    background-position: bottom;
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 100%;
   }
 
   .example .fadedbox {
@@ -778,11 +784,11 @@ textarea.input2 + .focus-input2::after {
     height: 40rem;
     padding: 13rem 2rem;
   }
-
   .example:hover .fadedbox {
     opacity: 0.9;
   }
   .example .text {
+    background-size: 110%;
     -webkit-transition: all 300ms ease-out;
     -moz-transition: all 300ms ease-out;
     -o-transition: all 300ms ease-out;
@@ -791,7 +797,6 @@ textarea.input2 + .focus-input2::after {
     transform: translateY(3rem);
     -webkit-transform: translateY(3rem);
   }
-
   .example .title {
     font-size: 2.5em;
     text-transform: uppercase;
@@ -799,12 +804,34 @@ textarea.input2 + .focus-input2::after {
     transition-delay: 0.2s;
     transition-duration: 0.3s;
   }
-
   .example:hover .title,
   .example:focus .title {
     opacity: 1;
     transform: translateY(0rem);
     -webkit-transform: translateY(0rem);
+  }
+
+  &:not(:last-child) {
+    //:not- pazymi viska, isskyrus last-child
+    margin-bottom: $gutter-vertical;
+  }
+
+  @include clearfix;
+
+  //^-pazymi visas klases,kurios prasideda 'col'
+  //*- pazymetu visas klases,kuriose yra zodis 'col'
+  [class^="col-"] {
+    float: left;
+
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+    }
+  }
+
+  .col-1-of-2 {
+    width: calc(
+      (100% - #{$gutter-horizontal}) / 2
+    );
   }
 }
 
@@ -822,13 +849,12 @@ textarea.input2 + .focus-input2::after {
   left: 0rem;
   z-index: 9999;
   transition: all 0.5s;
-
   opacity: 0;
   visibility: hidden;
 
   &__content {
     @include absCenter;
-    overflow: scroll;
+    overflow: auto;
     display: flex;
     width: 75%;
     height: 98vh;
@@ -956,62 +982,62 @@ textarea.input2 + .focus-input2::after {
 
 //Vidinis popupas
 
-.vidinis {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background-image: linear-gradient(
-    to right bottom,
-    rgba($color-primary, 0.9),
-    rgba($color-secondary, 0.9)
-  );
-  top: 0rem;
-  left: 0rem;
-  z-index: 9999;
-  transition: all 0.5s;
+// .vidinis {
+//   position: fixed;
+//   width: 100%;
+//   height: 100vh;
+//   background-image: linear-gradient(
+//     to right bottom,
+//     rgba($color-primary, 0.9),
+//     rgba($color-secondary, 0.9)
+//   );
+//   top: 0rem;
+//   left: 0rem;
+//   z-index: 9999;
+//   transition: all 0.5s;
 
-  opacity: 0;
-  visibility: hidden;
+//   opacity: 0;
+//   visibility: hidden;
 
-  &:target {
-    opacity: 1;
-    visibility: visible;
-  }
+//   &:target {
+//     opacity: 1;
+//     visibility: visible;
+//   }
 
-  .contentas {
-    display: grid;
-    grid-template-areas: "foto1 tekstas" "foto2 foto3";
-    @include absCenter;
-    overflow: hidden;
-    width: 200rem;
-    height: 200rem;
-    background-color: $color-white;
-    position: fixed;
-    box-shadow: 0 2rem 4rem
-      rgba($color-black, 0.2);
-    border-radius: 2px;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.25);
-    transition: all 0.5s 0.3s;
+//   .contentas {
+//     display: grid;
+//     grid-template-areas: "foto1 tekstas" "foto2 foto3";
+//     @include absCenter;
+//     overflow: hidden;
+//     width: 200rem;
+//     height: 200rem;
+//     background-color: $color-white;
+//     position: fixed;
+//     box-shadow: 0 2rem 4rem
+//       rgba($color-black, 0.2);
+//     border-radius: 2px;
+//     opacity: 0;
+//     transform: translate(-50%, -50%) scale(0.25);
+//     transition: all 0.5s 0.3s;
 
-    .foto1 {
-      grid-area: foto1;
-    }
-    .tekstas {
-      grid-area: tekstas;
-      width: 100rem;
-      height: 100rem;
-    }
-    .foto2 {
-      grid-area: foto2;
-    }
-    .foto3 {
-      grid-area: foto3;
-    }
+//     .foto1 {
+//       grid-area: foto1;
+//     }
+//     .tekstas {
+//       grid-area: tekstas;
+//       width: 100rem;
+//       height: 100rem;
+//     }
+//     .foto2 {
+//       grid-area: foto2;
+//     }
+//     .foto3 {
+//       grid-area: foto3;
+//     }
 
-    .popup_foto {
-      width: 100rem;
-      height: 100rem;
-    }
-  }
-}
+//     .popup_foto {
+//       width: 100rem;
+//       height: 100rem;
+//     }
+//   }
+// }
